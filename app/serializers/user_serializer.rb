@@ -1,5 +1,5 @@
 class UserSerializer < ActiveModel::Serializer
-  attributes :id, :firstname, :lastname, :fullname, :image,:avatar_thumb,:avatar_medium
+  attributes :id, :firstname, :lastname, :fullname, :image,:avatar_thumb,:avatar_medium,:avatar_original
 
   def fullname
     object.firstname+" "+object.lastname
@@ -9,5 +9,8 @@ class UserSerializer < ActiveModel::Serializer
   end
   def avatar_medium
     object.avatar.url(:medium)
+  end
+  def avatar_original
+      object.avatar.url(:original)
   end
 end
