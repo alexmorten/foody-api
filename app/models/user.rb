@@ -1,9 +1,9 @@
 class User < ApplicationRecord
-  after_save :call_avatar_service
+  after_save :call_avatar_job
   has_attached_file :avatar, styles: { medium: "300x300>", thumb: "100x100>" },:path => "avatars/:id/:style/:filename"
-
   do_not_validate_attachment_file_type :avatar
 
+  has_many :posts
 
 
   # Include default devise modules.
@@ -13,11 +13,10 @@ class User < ApplicationRecord
   include DeviseTokenAuth::Concerns::User
   private
 
-  def call_avatar_service
+  def call_avatar_job
     if self.image_changed?
       self.processed_image=false
-      create_avatar_service = CreateAvatar.new(self)
-      create_avatar_service.call
+      CreateAvatarJob.perform_later(self)
     end
   end
 end
