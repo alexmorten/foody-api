@@ -16,7 +16,7 @@ class User < ApplicationRecord
   def call_avatar_job
     if self.image_changed?
       self.processed_image=false
-      CreateAvatarJob.perform_later(self)
+      UserAvatarWorker.perform_async(self.id)
     end
   end
 end

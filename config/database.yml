@@ -1,7 +1,7 @@
 development:
   adapter: postgresql
   database: foody_development
-  pool: 5
+  pool: 10
   timeout: 5000
 test:
   adapter: postgresql
@@ -12,5 +12,5 @@ test:
 production:
   adapter: postgresql
   database: foody_production
-  pool: 5
+  pool: 10
   timeout: 5000

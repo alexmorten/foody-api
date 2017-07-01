@@ -44,3 +44,4 @@ gem 'active_model_serializers', '~> 0.10.0.rc2'
 gem 'paperclip'
 gem 'aws-sdk', '~> 2.3'
 gem 'dotenv-rails', :groups => [:development, :test]
+gem 'sidekiq'

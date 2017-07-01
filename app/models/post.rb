@@ -12,7 +12,6 @@ class Post < ApplicationRecord
   end
   def perform_processing
     self.image_processing=true
-    
-    CreatePostImageJob.perform_later(self)
+    PostImageWorker.perform_async(self.id)
   end
 end
