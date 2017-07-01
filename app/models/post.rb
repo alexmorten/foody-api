@@ -11,7 +11,7 @@ class Post < ApplicationRecord
     end
   end
   def perform_processing
-    self.image_processing=true
+    
     PostImageWorker.perform_async(self.id)
   end
 end
