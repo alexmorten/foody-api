@@ -41,6 +41,6 @@ end
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 gem 'devise_token_auth','~> 0.1.38'
 gem 'active_model_serializers', '~> 0.10.0.rc2'
-gem 'paperclip','~>5.0.0'
+gem 'paperclip'
 gem 'aws-sdk', '~> 2.3'
 gem 'dotenv-rails', :groups => [:development, :test]
