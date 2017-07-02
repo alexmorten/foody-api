@@ -1,7 +1,12 @@
 Rails.application.routes.draw do
-  resources :posts
-  mount_devise_token_auth_for 'User', at: 'auth'
+  resources :comments, except: :create do
+    resources :comments, module: 'comments', except: [:show, :update]
+  end
+  resources :posts do
+    resources :comments, module: 'posts', except: [:show, :update]
+  end
   resources :users, except: [:destroy,:create]
+
+  mount_devise_token_auth_for 'User', at: 'auth'
   get 'signed_url', to: 'signing#index'
-  # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end
