@@ -3,7 +3,7 @@ class Post < ApplicationRecord
 
   belongs_to :user
   has_many :comments, as: :commentable
-
+  has_many :votes, as: :votable
   has_attached_file :image, styles: {large:"900x", medium: "600x>", thumb: "300x300>" },:path => "posts/:id/:style/:filename"
   do_not_validate_attachment_file_type :image
 

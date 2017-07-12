@@ -1,5 +1,11 @@
 class PostSerializer < ActiveModel::Serializer
-  attributes :id, :title, :description, :image_processing, :ingredients, :preparation,:image_thumb,:image_medium,:image_large,:image_original
+  attributes :id, :title,
+    :description, :image_processing,
+    :ingredients, :preparation,
+    :image_thumb,:image_medium,
+    :image_large,:image_original,
+    :points,:vote
+
   belongs_to :user
   def image_thumb
     object.image.url(:thumb)
@@ -12,5 +18,11 @@ class PostSerializer < ActiveModel::Serializer
   end
   def image_original
       object.image.url(:original)
+  end
+  def points
+    object.votes.sum(:value)
+  end
+  def vote
+    scope.get_vote_for object
   end
 end
